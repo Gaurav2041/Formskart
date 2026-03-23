@@ -12,7 +12,7 @@ function CollegePredictor() {
     setSearched(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/predict", {
+      const response = await fetch("/api/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,18 +22,19 @@ function CollegePredictor() {
         }),
       });
 
-      const data = await response.json();
-      console.log("API Response:", data); // ✅ Debug
+      const rawBody = await response.text();
+      const data = rawBody ? JSON.parse(rawBody) : null;
+      console.log("API Response:", data);
 
       if (response.ok) {
-        setColleges(data);
+        setColleges(Array.isArray(data) ? data : []);
       } else {
         setColleges([]);
-        alert(data.message || "No colleges found");
+        alert(data?.message || data?.error || `Request failed with status ${response.status}`);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Something went wrong.");
+      alert("Could not reach the predictor service.");
       setColleges([]);
     }
 
