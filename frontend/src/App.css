@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  background-color: #000;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Center Section */
+.center-content {
+  text-align: center;
+}
+
+.logo {
+  font-size: 70px;
+  font-weight: 800;
+  color: #ffd700;
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.tagline {
+  color: #aaa;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
+  background: #111;
+  padding: 30px 20px;
+  border-left: 3px solid #ffd700;
+  box-shadow: -5px 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.sidebar-title {
+  color: #ffd700;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.feature-list {
+  list-style: none;
+}
+
+.feature-list li {
+  color: #fff;
+  margin-bottom: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.feature-list li:hover {
+  color: #ffd700;
+  transform: translateX(5px);
+}
+
+/* Glow Animation */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(255, 215, 0, 1);
+  }
+}
+
+.content-page {
+  color: white;
+  max-width: 800px;
+  text-align: left;
+}
+
+.content-page h1 {
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+
+.content-page ul,
+.content-page ol {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.card {
+  background: #111;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 3px solid #ffd700;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+}
+
+.feature-list a {
+  text-decoration: none;
+  color: white;
+}
+
+.feature-list a:hover {
+  color: #ffd700;
+}
+.input-box {
+  padding: 10px;
+  margin: 10px 10px 10px 0;
+  width: 200px;
+}
+
+.btn {
+  padding: 10px 15px;
+  background: #ffd700;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #ffcc00;
+}
+
+.result-section {
+  margin-top: 20px;
+}
+
+.cutoff-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.cutoff-table th,
+.cutoff-table td {
+  border: 1px solid #444;
+  padding: 10px;
+  text-align: center;
+}
+
+.cutoff-table th {
+  background-color: #111;
+  color: #ffd700;
+}
