@@ -1,4 +1,18 @@
-const College = require("../models/college");
+const path = require("path");
+const localCollegeData = require(path.join(__dirname, "../../../Data/josaa_data.json"));
+
+const normalizeCollege = (college) => ({
+  institute: college.institute || college["Institute"] || college.institute_name,
+  program:
+    college.program ||
+    college["Academic Program Name"] ||
+    college.branch,
+  category: college.category || college["Seat Type"] || college.seatType,
+  openingRank:
+    college.openingRank ?? college["Opening Rank"] ?? college.opening_rank,
+  closingRank:
+    college.closingRank ?? college["Closing Rank"] ?? college.closing_rank,
+});
 
 const predictCollege = async (req, res) => {
   try {
@@ -12,18 +26,9 @@ const predictCollege = async (req, res) => {
       });
     }
 
-    // ✅ Query directly from DB
-    const colleges = await College.find({
-      "Closing Rank": { $lte: rankNum }
-    });
-
-    // ✅ Format response (VERY IMPORTANT 🔥)
-    const formattedColleges = colleges.map((c) => ({
-      institute: c["Institute"],
-      program: c["Academic Program Name"],
-      openingRank: c["Opening Rank"],
-      closingRank: c["Closing Rank"],
-    }));
+    const formattedColleges = localCollegeData
+      .filter((college) => Number(college.closing_rank) >= rankNum)
+      .map(normalizeCollege);
 
     // ✅ Handle empty result
     if (formattedColleges.length === 0) {
